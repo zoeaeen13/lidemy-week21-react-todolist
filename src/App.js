@@ -142,12 +142,12 @@ function App() {
                   todo={todo}
                   handlgeEditTodo={handlgeEditTodo}
                   handleToggleTodo={handleToggleTodo}
-          handleDeleteTodo={handleDeleteTodo}
+           handleDeleteTodo={handleDeleteTodo}
                 />
               )
             }
-            return null
-          })}
+            return null   
+         })}
         </TodosWrapper>
       </Wrapper>
     </div>
