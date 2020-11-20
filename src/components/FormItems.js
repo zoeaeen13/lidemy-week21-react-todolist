@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {MEDIA_QUERY_MD} from "../constants/style";
+import { MEDIA_QUERY_MD } from "../constants/style";
 
 const FormWrapper = styled.form`
   box-sizing: border-box;
@@ -14,7 +14,7 @@ const FormWrapper = styled.form`
     font-size: 2rem;
     color: white;
   }
-`
+`;
 
 const InputWrapper = styled.div`
   margin: 0 auto;
@@ -39,7 +39,7 @@ const InputWrapper = styled.div`
       outline: none;
     }
   }
-`
+`;
 
 const SectionWrapper = styled.section`
   display: flex;
@@ -50,48 +50,74 @@ const SectionWrapper = styled.section`
   ${MEDIA_QUERY_MD} {
     flex-wrap: wrap;
     justify-content: center;
-  
+
     button {
       margin: 10px 0;
     }
-  
+
     div {
       margin: 0 10px;
     }
   }
-`
+`;
 
-function RadioButton({typeName, selectedType, handleClick}) {
+function RadioButton({ typeName, selectedType, handleClick }) {
   return (
-    <label className={`btn btn-secondary ${selectedType === typeName? 'active' : ''}`} >
-      <input type="radio" name="options" id={typeName} onClick={handleClick}/>{typeName}
+    <label
+      className={`btn btn-secondary ${
+        selectedType === typeName ? "active" : ""
+      }`}
+    >
+      <input type="radio" name="options" id={typeName} onClick={handleClick} />
+      {typeName}
     </label>
-  )
+  );
 }
 
-export function Form({value, handleInputChnage, handleAddTodo}) {
+export function Form({ value, handleInputChnage, handleAddTodo }) {
   return (
     <FormWrapper onSubmit={handleAddTodo}>
       <h1>TODOs</h1>
       <InputWrapper>
-        <input type="text" placeholder="Let's do something!" onChange={handleInputChnage} value={value}/>
-        <button className="btn btn-light">Add</button>  
+        <input
+          type="text"
+          placeholder="Let's do something!"
+          onChange={handleInputChnage}
+          value={value}
+        />
+        <button className="btn btn-light">Add</button>
       </InputWrapper>
     </FormWrapper>
-  )
+  );
 }
 
-
-
-export function FormButtons({handleClearTodos, handleSelectType, selectedType}) {
+export function FormButtons({
+  handleClearTodos,
+  handleSelectType,
+  selectedType,
+}) {
   return (
     <SectionWrapper>
-      <button className="btn btn-danger" onClick={handleClearTodos}>Clear</button>  
+      <button className="btn btn-danger" onClick={handleClearTodos}>
+        Clear
+      </button>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        <RadioButton typeName="All" selectedType={selectedType} handleClick={handleSelectType}/>
-        <RadioButton typeName="Completed" selectedType={selectedType} handleClick={handleSelectType}/>
-        <RadioButton typeName="Incomplete" selectedType={selectedType} handleClick={handleSelectType}/>
+        <RadioButton
+          typeName="All"
+          selectedType={selectedType}
+          handleClick={handleSelectType}
+        />
+        <RadioButton
+          typeName="Completed"
+          selectedType={selectedType}
+          handleClick={handleSelectType}
+        />
+        <RadioButton
+          typeName="Incomplete"
+          selectedType={selectedType}
+          handleClick={handleSelectType}
+        />
       </div>
     </SectionWrapper>
-  )
+  );
 }

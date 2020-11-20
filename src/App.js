@@ -1,27 +1,13 @@
-import './App.css';
-import {Form, FormButtons} from "./components/FormItems";
-import {Wrapper, TodosWrapper} from "./components/Wrappers";
-import {TodoItem} from "./components/TodoItem";
-import { useState } from 'react';
+import { Form, FormButtons } from "./components/formItems";
+import { Wrapper, TodosWrapper } from "./components/wrappers";
+import { TodoItem } from "./components/todoItem";
+import { useState } from "react";
 
-let id = 3
+let id = 3;
 function App() {
   const [selectedType, setSelectType] = useState("All");
   const [value, setValue] = useState("");
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      content: "七點半買早餐",
-      isDone: true,
-      isShowed: true,
-    },
-    {
-      id: 2,
-      content: "洗碗倒垃圾",
-      isDone: false,
-      isShowed: true,
-    }
-  ])
+  const [todos, setTodos] = useState([]);
 
   // 輸入框
   function handleInputChnage(e) {
@@ -37,11 +23,11 @@ function App() {
           id,
           content: value,
           isDone: false,
-          isShowed: selectedType !==  'Completed',
+          isShowed: selectedType !== "Completed",
         },
         ...todos,
-      ])
-  
+      ]);
+
       id += 1;
       setValue("");
     }
@@ -54,72 +40,82 @@ function App() {
 
   // 切換狀態
   function handleToggleTodo(id) {
-    setTodos(todos.map((todo)=>{
-      if (todo.id !== id) return todo;
-      return {
-        ...todo,
-        isDone: !todo.isDone,
-      };
-    }))
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id !== id) return todo;
+        return {
+          ...todo,
+          isDone: !todo.isDone,
+        };
+      })
+    );
   }
-  
+
   // 編輯功能
   function handlgeEditTodo(e) {
-    setTodos(todos.map((todo)=>{
-      if (todo.id !== Number(e.target.id)) return todo;
-      return {
-        ...todo,
-        content: e.target.value,
-      };
-    }))
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id !== Number(e.target.id)) return todo;
+        return {
+          ...todo,
+          content: e.target.value,
+        };
+      })
+    );
   }
 
   // 清空已完成
   function handleClearTodos() {
-    setTodos(todos.filter((todo) => !todo.isDone))
+    setTodos(todos.filter((todo) => !todo.isDone));
   }
 
   // 設置篩選按鈕
   function handleSelectType(e) {
-    const mode = e.target.id
+    const mode = e.target.id;
     setSelectType(mode);
 
     switch (mode) {
-      case 'Completed':
-        setTodos(todos.map((todo)=>{
-          if (todo.isDone) {
+      case "Completed":
+        setTodos(
+          todos.map((todo) => {
+            if (todo.isDone) {
+              return {
+                ...todo,
+                isShowed: true,
+              };
+            }
             return {
               ...todo,
-              isShowed: true,
-            }
-          }
-          return {
-            ...todo,
-            isShowed: false,
-          };
-        }))
+              isShowed: false,
+            };
+          })
+        );
         break;
-      case 'Incomplete':
-        setTodos(todos.map((todo)=>{
-          if (!todo.isDone) {
+      case "Incomplete":
+        setTodos(
+          todos.map((todo) => {
+            if (!todo.isDone) {
+              return {
+                ...todo,
+                isShowed: true,
+              };
+            }
             return {
               ...todo,
-              isShowed: true,
-            }
-          }
-          return {
-            ...todo,
-            isShowed: false,
-          };
-        }))
+              isShowed: false,
+            };
+          })
+        );
         break;
       default:
-        setTodos(todos.map((todo)=>{
-          return {
-            ...todo,
-            isShowed: true,
-          };
-        }))
+        setTodos(
+          todos.map((todo) => {
+            return {
+              ...todo,
+              isShowed: true,
+            };
+          })
+        );
         break;
     }
   }
@@ -127,19 +123,30 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
-        <Form value={value} handleInputChnage={handleInputChnage} handleAddTodo={handleAddTodo}/>
-        <FormButtons selectedType={selectedType} handleSelectType={handleSelectType} handleClearTodos={handleClearTodos} />
+        <Form
+          value={value}
+          handleInputChnage={handleInputChnage}
+          handleAddTodo={handleAddTodo}
+        />
+        <FormButtons
+          selectedType={selectedType}
+          handleSelectType={handleSelectType}
+          handleClearTodos={handleClearTodos}
+        />
         <TodosWrapper>
           {todos.map((todo) => {
             if (todo.isShowed) {
-              return <TodoItem
-              key={todo.id}
-              todo={todo}
-              handlgeEditTodo={handlgeEditTodo} 
-              handleToggleTodo={handleToggleTodo} 
-              handleDeleteTodo={handleDeleteTodo}
-            />
+              return (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  handlgeEditTodo={handlgeEditTodo}
+                  handleToggleTodo={handleToggleTodo}
+                  handleDeleteTodo={handleDeleteTodo}
+                />
+              );
             }
+            return null;
           })}
         </TodosWrapper>
       </Wrapper>
