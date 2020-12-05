@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import imgCheck from "../images/check.svg";
+import imgUncheck from "../images/uncheck.svg";
+import imgDelete from "../images/delete.svg";
 
 const TodoWrapper = styled.div`
   display: flex;
@@ -38,7 +41,7 @@ const ImageWrapper = styled.div`
 
   img {
     width: 90%;
-    border: 1px solid black;
+    height: 90%;
     object-fit: cover;
   }
 `;
@@ -62,7 +65,7 @@ export function TodoItem({
       <ImageWrapper>
         <img
           alt=""
-          src={todo.isDone ? "images/check.png" : "images/uncheck"}
+          src={todo.isDone ? imgCheck : imgUncheck}
           onClick={handleToggleClick}
         />
       </ImageWrapper>
@@ -74,7 +77,7 @@ export function TodoItem({
         onChange={handlgeEditTodo}
       />
       <ImageWrapper>
-        <img alt="" src="images/delete.png" onClick={handleDeleteClick} />
+        <img alt="" src={imgDelete} onClick={handleDeleteClick} />
       </ImageWrapper>
     </TodoWrapper>
   );
