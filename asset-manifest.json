@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/lidemy-week21-react-todolist/static/js/main.ce9b4429.chunk.js",
+    "main.js.map": "/lidemy-week21-react-todolist/static/js/main.ce9b4429.chunk.js.map",
+    "runtime-main.js": "/lidemy-week21-react-todolist/static/js/runtime-main.7f35d900.js",
+    "runtime-main.js.map": "/lidemy-week21-react-todolist/static/js/runtime-main.7f35d900.js.map",
+    "static/js/2.0eaca64a.chunk.js": "/lidemy-week21-react-todolist/static/js/2.0eaca64a.chunk.js",
+    "static/js/2.0eaca64a.chunk.js.map": "/lidemy-week21-react-todolist/static/js/2.0eaca64a.chunk.js.map",
+    "index.html": "/lidemy-week21-react-todolist/index.html",
+    "static/js/2.0eaca64a.chunk.js.LICENSE.txt": "/lidemy-week21-react-todolist/static/js/2.0eaca64a.chunk.js.LICENSE.txt",
+    "static/media/check.30036e3a.svg": "/lidemy-week21-react-todolist/static/media/check.30036e3a.svg",
+    "static/media/delete.7f39c7af.svg": "/lidemy-week21-react-todolist/static/media/delete.7f39c7af.svg",
+    "static/media/uncheck.50bf432c.svg": "/lidemy-week21-react-todolist/static/media/uncheck.50bf432c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f35d900.js",
+    "static/js/2.0eaca64a.chunk.js",
+    "static/js/main.ce9b4429.chunk.js"
+  ]
+}
