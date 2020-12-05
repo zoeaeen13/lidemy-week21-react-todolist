@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import imgCheck from "../images/check.svg";
 import imgUncheck from "../images/uncheck.svg";
 import imgDelete from "../images/delete.svg";
+import PropTypes from "prop-types";
 
 const TodoWrapper = styled.div`
   display: flex;
