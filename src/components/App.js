@@ -1,20 +1,21 @@
-import { Form, FormButtons } from "./components/formItems";
-import { Wrapper, TodosWrapper } from "./components/wrappers";
-import { TodoItem } from "./components/todoItem";
+import { Form, FormButtons } from "./FormItems";
+import { Wrapper, TodosWrapper } from "./Wrappers";
+import { TodoItem } from "./Todoitem";
 import { useState } from "react";
+import { TypeContext } from "../contexts";
 
-let id = 3;
+let id = 1;
 function App() {
   const [selectedType, setSelectType] = useState("All");
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState([]);
 
-  // 輸入框
+  // handle input change
   function handleInputChnage(e) {
     setValue(e.target.value);
   }
 
-  // 新增
+  // add todo
   function handleAddTodo(e) {
     e.preventDefault();
     if (value !== "") {
@@ -33,12 +34,12 @@ function App() {
     }
   }
 
-  // 刪除功能
+  // delete todo
   function handleDeleteTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
-  // 切換狀態
+  // todo toggle
   function handleToggleTodo(id) {
     setTodos(
       todos.map((todo) => {
@@ -51,7 +52,7 @@ function App() {
     );
   }
 
-  // 編輯功能
+  // edit todo
   function handlgeEditTodo(e) {
     setTodos(
       todos.map((todo) => {
@@ -64,16 +65,15 @@ function App() {
     );
   }
 
-  // 清空已完成
+  // clear finished todos
   function handleClearTodos() {
     setTodos(todos.filter((todo) => !todo.isDone));
   }
 
-  // 設置篩選按鈕
+  // set type to show
   function handleSelectType(e) {
     const mode = e.target.id;
     setSelectType(mode);
-
     switch (mode) {
       case "Completed":
         setTodos(
@@ -121,36 +121,37 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Wrapper>
-        <Form
-          value={value}
-          handleInputChnage={handleInputChnage}
-          handleAddTodo={handleAddTodo}
-        />
-        <FormButtons
-          selectedType={selectedType}
-          handleSelectType={handleSelectType}
-          handleClearTodos={handleClearTodos}
-        />
-        <TodosWrapper>
-          {todos.map((todo) => {
-            if (todo.isShowed) {
-              return (
-                <TodoItem
-                  key={todo.id}
-                  todo={todo}
-                  handlgeEditTodo={handlgeEditTodo}
-                  handleToggleTodo={handleToggleTodo}
-           handleDeleteTodo={handleDeleteTodo}
-                />
-              )
-            }
-            return null   
-         })}
-        </TodosWrapper>
-      </Wrapper>
-    </div>
+    <TypeContext.Provider value={{ selectedType }}>
+      <div className="App">
+        <Wrapper>
+          <Form
+            value={value}
+            handleInputChnage={handleInputChnage}
+            handleAddTodo={handleAddTodo}
+          />
+          <FormButtons
+            handleSelectType={handleSelectType}
+            handleClearTodos={handleClearTodos}
+          />
+          <TodosWrapper>
+            {todos.map((todo) => {
+              if (todo.isShowed) {
+                return (
+                  <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    handlgeEditTodo={handlgeEditTodo}
+                    handleToggleTodo={handleToggleTodo}
+                    handleDeleteTodo={handleDeleteTodo}
+                  />
+                );
+              }
+              return null;
+            })}
+          </TodosWrapper>
+        </Wrapper>
+      </div>
+    </TypeContext.Provider>
   );
 }
 

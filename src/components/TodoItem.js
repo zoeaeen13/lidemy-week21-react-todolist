@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const TodoWrapper = styled.div`
   display: flex;
@@ -37,6 +38,8 @@ const ImageWrapper = styled.div`
 
   img {
     width: 90%;
+    border: 1px solid black;
+    object-fit: cover;
   }
 `;
 
@@ -59,7 +62,7 @@ export function TodoItem({
       <ImageWrapper>
         <img
           alt=""
-          src={todo.isDone ? "./images/check.png" : "./images/uncheck.png"}
+          src={todo.isDone ? "images/check.png" : "images/uncheck"}
           onClick={handleToggleClick}
         />
       </ImageWrapper>
@@ -71,8 +74,15 @@ export function TodoItem({
         onChange={handlgeEditTodo}
       />
       <ImageWrapper>
-        <img alt="" src="./images/delete.png" onClick={handleDeleteClick} />
+        <img alt="" src="images/delete.png" onClick={handleDeleteClick} />
       </ImageWrapper>
     </TodoWrapper>
   );
 }
+
+TodoItem.propTypes = {
+  todo: PropTypes.object,
+  handleToggleTodo: PropTypes.func,
+  handlgeEditTodo: PropTypes.func,
+  handleDeleteTodo: PropTypes.func,
+};

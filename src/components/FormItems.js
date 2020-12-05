@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { MEDIA_QUERY_MD } from "../constants/style";
+import PropTypes from "prop-types";
+import { TypeContext } from "../contexts";
+import { useContext } from "react";
 
 const FormWrapper = styled.form`
   box-sizing: border-box;
@@ -91,33 +94,42 @@ export function Form({ value, handleInputChnage, handleAddTodo }) {
   );
 }
 
-export function FormButtons({
-  handleClearTodos,
-  handleSelectType,
-  selectedType,
-}) {
+export function FormButtons({ handleClearTodos, handleSelectType }) {
+  const { selectedType } = useContext(TypeContext);
+  const typeList = ["All", "Completed", "Incomplete"];
+
   return (
     <SectionWrapper>
       <button className="btn btn-danger" onClick={handleClearTodos}>
         Clear
       </button>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        <RadioButton
-          typeName="All"
-          selectedType={selectedType}
-          handleClick={handleSelectType}
-        />
-        <RadioButton
-          typeName="Completed"
-          selectedType={selectedType}
-          handleClick={handleSelectType}
-        />
-        <RadioButton
-          typeName="Incomplete"
-          selectedType={selectedType}
-          handleClick={handleSelectType}
-        />
+        {typeList.map((type, index) => (
+          <RadioButton
+            key={index}
+            typeName={type}
+            selectedType={selectedType}
+            handleClick={handleSelectType}
+          />
+        ))}
       </div>
     </SectionWrapper>
   );
 }
+
+RadioButton.propTypes = {
+  typeName: PropTypes.string,
+  selectedType: PropTypes.string,
+  handleClick: PropTypes.func,
+};
+
+Form.propTypes = {
+  value: PropTypes.string,
+  handleInputChnage: PropTypes.func,
+  handleAddTodo: PropTypes.func,
+};
+
+FormButtons.propTypes = {
+  handleClearTodos: PropTypes.func,
+  handleSelectType: PropTypes.func,
+};
