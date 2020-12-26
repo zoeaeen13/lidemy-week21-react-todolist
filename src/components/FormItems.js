@@ -80,6 +80,12 @@ function RadioButton({ typeName, selectedType, handleSelectType }) {
   );
 }
 
+RadioButton.propTypes = {
+  typeName: PropTypes.string,
+  selectedType: PropTypes.string,
+  handleSelectType: PropTypes.func,
+};
+
 export function Form({ value, handleInputChnage, handleAddTodo }) {
   return (
     <FormWrapper onSubmit={handleAddTodo}>
@@ -96,6 +102,11 @@ export function Form({ value, handleInputChnage, handleAddTodo }) {
     </FormWrapper>
   );
 }
+Form.propTypes = {
+  value: PropTypes.string,
+  handleInputChnage: PropTypes.func,
+  handleAddTodo: PropTypes.func,
+};
 
 export function FormButtons({ handleClearTodos, handleSelectType }) {
   const { selectedType } = useContext(TypeContext);
@@ -119,18 +130,6 @@ export function FormButtons({ handleClearTodos, handleSelectType }) {
     </SectionWrapper>
   );
 }
-
-RadioButton.propTypes = {
-  typeName: PropTypes.string,
-  selectedType: PropTypes.string,
-  handleSelectType: PropTypes.func,
-};
-
-Form.propTypes = {
-  value: PropTypes.string,
-  handleInputChnage: PropTypes.func,
-  handleAddTodo: PropTypes.func,
-};
 
 FormButtons.propTypes = {
   handleClearTodos: PropTypes.func,
