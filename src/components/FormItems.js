@@ -64,14 +64,17 @@ const SectionWrapper = styled.section`
   }
 `;
 
-function RadioButton({ typeName, selectedType, handleClick }) {
+function RadioButton({ typeName, selectedType, handleSelectType }) {
+  const handleClick = () => {
+    handleSelectType(typeName);
+  };
   return (
     <label
       className={`btn btn-secondary ${
         selectedType === typeName ? "active" : ""
       }`}
     >
-      <input type="radio" name="options" id={typeName} onClick={handleClick} />
+      <input type="radio" name="options" onClick={handleClick} />
       {typeName}
     </label>
   );
@@ -109,7 +112,7 @@ export function FormButtons({ handleClearTodos, handleSelectType }) {
             key={index}
             typeName={type}
             selectedType={selectedType}
-            handleClick={handleSelectType}
+            handleSelectType={handleSelectType}
           />
         ))}
       </div>
@@ -120,7 +123,7 @@ export function FormButtons({ handleClearTodos, handleSelectType }) {
 RadioButton.propTypes = {
   typeName: PropTypes.string,
   selectedType: PropTypes.string,
-  handleClick: PropTypes.func,
+  handleSelectType: PropTypes.func,
 };
 
 Form.propTypes = {

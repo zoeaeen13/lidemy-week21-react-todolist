@@ -71,8 +71,7 @@ function App() {
   }
 
   // set type to show
-  function handleSelectType(e) {
-    const mode = e.target.id;
+  function handleSelectType(mode) {
     setSelectType(mode);
     switch (mode) {
       case "Completed":
