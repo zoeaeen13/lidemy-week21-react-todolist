@@ -16,7 +16,7 @@
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://zoeaeen13.github.io/lidemy-week21-react-todolist",
+  "homepage": "https://zoeaeen13.github.io/react-todolist",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
